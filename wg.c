@@ -1,23 +1,17 @@
 
 /*
- * 是否开启超频
- * 
- * 返回: 
- *  0, 取消超频
- *  1, 开启超频
- * 
- * 通过不断轮询，检测设备是否发送超频命令上来
-*/
-Int32 IsOverLock(void);
+ * 超频按键回调
+ *
+ * startOverLockFun: 开始超频的回调函数
+ *     返回 0 代表成功， 其他值为失败
+ *
+ * stopOverLockFun: 停止超频的回调函数
+ *     返回 0 代表成功， 其他值为失败
+ */
+typedef Int32 (*CallbackFunction)(void);
 
-/*
- * 设置超频结果
- * 
- *  result 为 0 代表超频成功
- *  result 为 1 代表超频失败     
- * 
-*/
-void OverLockResponse(Int32 result);
+Int32 RegisterOverLock(CallbackFunction startOverLockFun, CallbackFunction stopOverLockFun);
+
 
 /*
  * 设置超频状态
