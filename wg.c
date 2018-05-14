@@ -8,7 +8,7 @@
  * stopOverLockFun: 停止超频的回调函数
  *     返回 0 代表成功， 其他值为失败
  */
-typedef Int32 (*CallbackFunction)(void);
+typedef Int32 (__stdcall *CallbackFunction)(DWORD dwType, void* pData, void* pParam);
 
 Int32 RegisterOverLock(CallbackFunction startOverLockFun, CallbackFunction stopOverLockFun);
 
