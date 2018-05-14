@@ -40,3 +40,17 @@ void SetFq(Float32 fq);
  *  4 其他模式
 */
 void SetMode(Int32 mode);
+
+/*
+ * 初始化设备接口
+ *
+ * 返回 0 代表成功， 其他值为失败
+ */
+Int32 Init();
+
+/*
+ * 释放设备接口
+ *
+ * 返回 0 代表成功， 其他值为失败
+ */
+Int32 Release();
