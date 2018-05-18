@@ -4,26 +4,40 @@
  *
  * dwType : 命令功能码
  * pParam : 命令参数
- *
- * dwType :
- *   1 : 开启超频
- *   2 : 关闭超频
- *
- *   3 : 超频状态回调
- *       *pParam 值（int32) : 1 - 普通模式 ,  2 - 超频模式
- *
- *   4 : CPU频率回调
- *       *pParam 值 (float32) : 例如 4.8 M 则 *pParam = 4.8
- *
- *   5 : PC工作模式
- *       *pParam 值 (int32) : 1 - 普通模式 , 2 - 游戏模式 , 3 - 待机模式, 4 - 其他模式
  */
-#define OVERLOCK_TYPE_START (0)
-#define OVERLOCK_TYPE_STOP (1)
+
 
 typedef Int32 (__stdcall *CallbackFunction)(DWORD dwType, void* pData, void* pParam);
 
+//
+// 超频功能回调
+#define OVERLOCK_TYPE_START (0)
+#define OVERLOCK_TYPE_STOP (1)
+/*
+ * dwType : 0 - 开启超频 ,  1 - 停止超频
+ */
 Int32 RegisterOverLock(CallbackFunction OverLockFunc, void* pParam);
+
+//
+// 设备获取超频状态回调
+/*
+ *        dwType 值（  : 1 - 普通模式 ,  2 - 超频模式
+ */
+Int32 RegisterGetOverLockState(CallbackFunction func, void* pParam);
+
+//
+// 设备获取cpu频率回调
+/*
+*       dwType 值 (float32) : 例如 4.8 M 则 *pParam = 4.8
+*/
+Int32 RegisterGetCPU(CallbackFunction func, void* pParam);
+
+//
+// 设备获取PC工作模式回调
+/*
+*       dwType 值  : 1 - 普通模式 , 2 - 游戏模式 , 3 - 待机模式, 4 - 其他模式
+*/
+Int32 RegisterGetMode(CallbackFunction func, void* pParam);
 
 
 /*
