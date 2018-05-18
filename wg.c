@@ -1,12 +1,22 @@
 
 /*
- * 超频按键回调
+ * 设备上传命令回调
  *
- * startOverLockFun: 开始超频的回调函数
- *     返回 0 代表成功， 其他值为失败
+ * dwType : 命令功能码
+ * pParam : 命令参数
  *
- * stopOverLockFun: 停止超频的回调函数
- *     返回 0 代表成功， 其他值为失败
+ * dwType :
+ *   1 : 开启超频
+ *   2 : 关闭超频
+ *
+ *   3 : 超频状态回调
+ *       *pParam 值（int32) : 1 - 普通模式 ,  2 - 超频模式
+ *
+ *   4 : CPU频率回调
+ *       *pParam 值 (float32) : 例如 4.8 M 则 *pParam = 4.8
+ *
+ *   5 : PC工作模式
+ *       *pParam 值 (int32) : 1 - 普通模式 , 2 - 游戏模式 , 3 - 待机模式, 4 - 其他模式
  */
 #define OVERLOCK_TYPE_START (0)
 #define OVERLOCK_TYPE_STOP (1)
