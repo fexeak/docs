@@ -14,28 +14,34 @@ typedef Int32 (__stdcall *CallbackFunction)(DWORD dwType, void* pData, void* pPa
 #define OVERLOCK_TYPE_START (0)
 #define OVERLOCK_TYPE_STOP (1)
 /*
- * dwType : 0 - 开启超频 ,  1 - 停止超频
+ * OverLockFunc
+ * pParam : 0 - 开启超频 ,  1 - 停止超频
+ *
+ * 注意: 开启或者停止超频完成的时候，需要调用设置超频状态 SetOverLockState 函数通知设备超频结果.
  */
 Int32 RegisterOverLock(CallbackFunction OverLockFunc, void* pParam);
 
 //
 // 设备获取超频状态回调
 /*
- *        dwType 值（  : 1 - 普通模式 ,  2 - 超频模式
+ * func
+ *        pParam 值（  : 1 - 普通模式 ,  2 - 超频模式
  */
 Int32 RegisterGetOverLockState(CallbackFunction func, void* pParam);
 
 //
 // 设备获取cpu频率回调
 /*
-*       dwType 值 (float32) : 例如 4.8 M 则 *pParam = 4.8
+ * func
+*       pParam 值 (float32) : 例如 4.8 M 则 *pParam = 4.8
 */
 Int32 RegisterGetCPU(CallbackFunction func, void* pParam);
 
 //
 // 设备获取PC工作模式回调
 /*
-*       dwType 值  : 1 - 普通模式 , 2 - 游戏模式 , 3 - 待机模式, 4 - 其他模式
+ * func
+*       pParam 值  : 1 - 普通模式 , 2 - 游戏模式 , 3 - 待机模式, 4 - 其他模式
 */
 Int32 RegisterGetMode(CallbackFunction func, void* pParam);
 
